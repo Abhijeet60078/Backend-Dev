@@ -1,0 +1,20 @@
+{
+  "name": "git",
+  "version": "1.0.0",
+  "description": "HI I am Abhijeet Mishra",
+  "homepage": "https://github.com/Abhijeet60078/Demo#readme",
+  "bugs": {
+    "url": "https://github.com/Abhijeet60078/Demo/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abhijeet60078/Demo.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "calculator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
