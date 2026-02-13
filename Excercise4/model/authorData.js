@@ -1,0 +1,9 @@
+// model/authorData.js
+
+const authors = [
+  { id: 1, name: "James Clear", country: "USA" },
+  { id: 2, name: "Paulo Coelho", country: "Brazil" },
+  { id: 3, name: "Robert C. Martin", country: "USA" }
+];
+
+export default authors;
