@@ -1,0 +1,12 @@
+{
+  "name": "exercise-3-schema",
+  "version": "1.0.0",
+  "description": "Schema design exercise",
+  "main": "models.js",
+  "scripts": {
+    "start": "node models.js"
+  },
+  "dependencies": {
+    "mongoose": "^7.0.0"
+  }
+}

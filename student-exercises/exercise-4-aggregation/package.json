@@ -1,0 +1,12 @@
+{
+  "name": "exercise-4-aggregation",
+  "version": "1.0.0",
+  "description": "Aggregation exercise",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "mongoose": "^7.0.0"
+  }
+}

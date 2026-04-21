@@ -1,55 +1,49 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Student = require('./models/Student');
-
 const app = express();
+
 app.use(express.json());
 
-// Connect MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/university')
-.then(() => console.log("MongoDB Connected"))
-.catch(err => console.log(err));
+mongoose.connect('mongodb://127.0.0.1:27017/ex1');
 
+// Schema
+const studentSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  gpa: Number
+});
 
-// 1️⃣ Add new student
+const Student = mongoose.model('Student', studentSchema);
+
+// 1. Add
 app.post('/add', async (req, res) => {
-    try {
-        const student = await Student.create(req.body);
-        res.send(student);
-    } catch (err) {
-        res.send(err.message);
-    }
+  const s = await Student.create(req.body);
+  res.send(s);
 });
 
-
-// 2️⃣ View all students
-app.get('/students', async (req, res) => {
-    const students = await Student.find();
-    res.send(students);
+// 2. View
+app.get('/all', async (req, res) => {
+  res.send(await Student.find());
 });
 
-
-// 3️⃣ Find student by email
-app.get('/student/:email', async (req, res) => {
-    const student = await Student.findOne({ email: req.params.email });
-    res.send(student);
+// 3. Find by email
+app.get('/find/:email', async (req, res) => {
+  res.send(await Student.findOne({ email: req.params.email }));
 });
 
-
-// 4️⃣ Update GPA
+// 4. Update GPA
 app.put('/update/:email', async (req, res) => {
-    const student = await Student.findOneAndUpdate(
-        { email: req.params.email },
-        { gpa: req.body.gpa },
-        { new: true }
-    );
-    res.send(student);
-});
-app.delete('/delete/:email', async (req, res) => {
-    const student = await Student.findOneAndDelete({ email: req.params.email });
-    res.send("Deleted successfully");
+  res.send(await Student.findOneAndUpdate(
+    { email: req.params.email },
+    { gpa: req.body.gpa },
+    { new: true }
+  ));
 });
 
-app.listen(3000, () => {
-    console.log("Server running on port 3000");
+// 5. Delete
+app.delete('/delete/:email', async (req, res) => {
+  await Student.findOneAndDelete({ email: req.params.email });
+  res.send("Deleted");
 });
+
+app.listen(3000);
