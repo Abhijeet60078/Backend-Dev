@@ -1,3 +1,4 @@
-# Exercise 2 - Database Queries
+# Exercise 2
 
-This folder contains exercises related to database queries.
+Query operations and filtering
+

@@ -1,3 +1,4 @@
-# Exercise 1 - CRUD Operations
+# Exercise 1
 
-This folder contains exercises related to CRUD (Create, Read, Update, Delete) operations.
+Database operations: Create, Read, Update, Delete
+

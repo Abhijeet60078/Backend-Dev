@@ -1,31 +1,26 @@
 const mongoose = require('mongoose');
 
-// 1. Course
-const courseSchema = new mongoose.Schema({
-  name: String,
-  prerequisites: [{
+const subjectSchema = new mongoose.Schema({
+  title: String,
+  requirements: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Course'
+    ref: 'Subject'
   }]
 });
 
-// 2. Professor
-const professorSchema = new mongoose.Schema({
-  name: String,
-  departments: [String]
+const instructorSchema = new mongoose.Schema({
+  fullName: String,
+  faculties: [String]
 });
 
-// 3. Grade
-const gradeSchema = new mongoose.Schema({
-  student: { type: mongoose.Schema.Types.ObjectId, ref: 'Student' },
-  course: { type: mongoose.Schema.Types.ObjectId, ref: 'Course' },
-  marks: Number
+const scoreSchema = new mongoose.Schema({
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'Learner' },
+  subjectId: { type: mongoose.Schema.Types.ObjectId, ref: 'Subject' },
+  value: Number
 });
 
-const Course = mongoose.model('Course', courseSchema);
-const Professor = mongoose.model('Professor', professorSchema);
-const Grade = mongoose.model('Grade', gradeSchema);
+const Subject = mongoose.model('Subject', subjectSchema);
+const Instructor = mongoose.model('Instructor', instructorSchema);
+const Score = mongoose.model('Score', scoreSchema);
 
-console.log("Schemas created");
-
-module.exports = { Course, Professor, Grade };
+module.exports = { Subject, Instructor, Score };

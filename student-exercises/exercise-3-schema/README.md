@@ -1,3 +1,4 @@
-# Exercise 3 - Database Schema
+# Exercise 3
 
-This folder contains exercises related to database schema design.
+Schema design and relationships
+

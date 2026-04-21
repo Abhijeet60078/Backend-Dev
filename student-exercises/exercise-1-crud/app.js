@@ -6,44 +6,41 @@ app.use(express.json());
 
 mongoose.connect('mongodb://127.0.0.1:27017/ex1');
 
-// Schema
-const studentSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   name: String,
   email: String,
   gpa: Number
 });
 
-const Student = mongoose.model('Student', studentSchema);
+const User = mongoose.model('User', userSchema);
 
-// 1. Add
-app.post('/add', async (req, res) => {
-  const s = await Student.create(req.body);
-  res.send(s);
+app.post('/create', async (req, res) => {
+  const record = await User.create(req.body);
+  res.json(record);
 });
 
-// 2. View
-app.get('/all', async (req, res) => {
-  res.send(await Student.find());
+app.get('/list', async (req, res) => {
+  const records = await User.find();
+  res.json(records);
 });
 
-// 3. Find by email
-app.get('/find/:email', async (req, res) => {
-  res.send(await Student.findOne({ email: req.params.email }));
+app.get('/get/:email', async (req, res) => {
+  const record = await User.findOne({ email: req.params.email });
+  res.json(record);
 });
 
-// 4. Update GPA
-app.put('/update/:email', async (req, res) => {
-  res.send(await Student.findOneAndUpdate(
+app.put('/modify/:email', async (req, res) => {
+  const updated = await User.findOneAndUpdate(
     { email: req.params.email },
     { gpa: req.body.gpa },
     { new: true }
-  ));
+  );
+  res.json(updated);
 });
 
-// 5. Delete
-app.delete('/delete/:email', async (req, res) => {
-  await Student.findOneAndDelete({ email: req.params.email });
-  res.send("Deleted");
+app.delete('/remove/:email', async (req, res) => {
+  await User.findOneAndDelete({ email: req.params.email });
+  res.json({ status: "Removed" });
 });
 
 app.listen(3000);

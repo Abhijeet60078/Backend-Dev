@@ -1,3 +1,4 @@
-# Exercise 4 - Database Aggregation
+# Exercise 4
 
-This folder contains exercises related to database aggregation.
+Aggregation pipeline operations
+
